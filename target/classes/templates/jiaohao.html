@@ -61,11 +61,11 @@
         </div>
 
         <a href="/doctor">
-            <input value="返回" type="button" class="btn btn-primary btn-block" style="width: 130px;display: inline;font-size: 20px">
+            <input value="返回" type="button" class="btn btn-primary btn-block" style="width: 99px;display: inline;font-size: 20px">
         </a>
         <a href="/nextUser">
             <input th:if="${user}!=null" value="下一位" class="btn btn-primary btn-block"
-                   style="width: 130px;float:right;display: inline;font-size: 20px">
+                   style="width: 99px;float:right;display: inline;font-size: 20px">
         </a>
 
         <h3 th:text="${user==null}? ${msg}:' '" style="color: white;text-align: center"></h3>
