@@ -1,0 +1,4 @@
+server:
+  provider:
+    url: http://47.95.248.109:8090
+  port: 80

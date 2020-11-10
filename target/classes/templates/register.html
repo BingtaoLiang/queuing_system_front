@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no,width=device-width,initial-scale=1,maximum-scale=1">
+    <title>肩关节功能自我评测</title>
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
+    <script src="/js/jquery-1.10.2.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../static/css/me.css">
+    <script src="http://cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+    <style>
+        .so input {
+            margin-left: 4px;
+            margin-right: 10px;
+            height: 22px;
+        }
+
+        #sub {
+            /*margin: 20px 500px;*/
+            width: 200px;
+            height: 50px;
+        }
+
+        th, td {
+            color: ghostwhite;
+        }
+    </style>
+</head>
+
+<body background="images/bg.jpg">
+
+<div class="login_cont">
+
+    <div style="height: 100px; margin-top: 20px">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+            <div class="jumbotron" style="background: none">
+                <h2 style="text-align: center;color: ghostwhite" th:if="${msg==null}">填写信息领取号码</h2>
+                <h2 style="text-align: center;color: orangered" th:text="${msg}"></h2>
+            </div>
+        </div>
+    </div>
+
+    <form class="form-signin" method="post" action="/guahao">
+        <div class="input_signup active">
+            <input class="input" id="name" name="username" type="text" aria-label="姓名" placeholder="请输入姓名..."
+                   style="font-size: 20px" required>
+            <div class="hint">请填写符合格式的姓名</div>
+            <input class="input" id="age" name="userAge" type="text" aria-label="年龄" placeholder="请输入年龄..."
+                   style="font-size: 20px" required>
+            <div class="hint">请填写符合格式的年龄</div>
+            <select class="form-control" id="sex" name="userSex" style="width: 100%; height:70px;font-size: 20px; box-sizing: border-box;border: 1px solid #ddeafb;
+                padding: 10px;outline: none;margin-bottom: 5px;border-radius: 5px" required>
+                <option value="暂无" selected style="display: none;">请选择性别...</option>
+                <option value="男">男</option>
+                <option value="女">女</option>
+            </select>
+            <div class="hint"></div>
+            <input id="phone" type="text"  name="userPhone" class="account input" aria-label="请输入手机号..."
+                   placeholder="请输入手机号..." style="font-size: 20px" required>
+            <div class="hint">请填写手机号...</div>
+            <!--###########################################################################-->
+            <h2 style="margin-top: 20px;text-align: center;color: ghostwhite">肩关节功能障碍自我评价表（ASES）</h2>
+            <h4 style="margin-top: 17px;text-align: center;color: ghostwhite">请评价过去1周你患侧肩部或上肢的功能</h4>
+
+
+            <div class="col-lg-11 col-xs-12" style="margin-left: -25px;width: 118%;text-align: center">
+
+                <table id="eval" class="table table-bordered">
+
+                    <thead>
+                    <tr>
+                        <th style="width: 25%"></th>
+                        <th style="width: 15%">没有困难</th>
+                        <th style="width: 15%">稍有困难</th>
+                        <th style="width: 15%">有中等程度困难</th>
+                        <th style="width: 15%">不能</th>
+                        <th style="width: 15%"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>你能够手举过肩投球吗？</td>
+                        <td><label><input type="radio" name="r" value="3"/><span>3</span></label></td>
+                        <td><label><input type="radio" name="r" value="2"/><span>2</span></label></td>
+                        <td><label><input type="radio" name="r" value="1"/><span>1</span></label></td>
+                        <td><label><input type="radio" name="r" value="0"/><span>0</span></label></td>
+                        <td></td>
+
+                    </tr>
+                    <tr>
+                        <td>你能够舒适地侧卧睡觉吗？</td>
+                        <td><label><input type="radio" name="r1" value="3"/><span>3</span></label></td>
+                        <td><label><input type="radio" name="r1" value="2"/><span>2</span></label></td>
+                        <td><label><input type="radio" name="r1" value="1"/><span>1</span></label></td>
+                        <td><label><input type="radio" name="r1" value="0"/><span>0</span></label></td>
+                        <td></td>
+
+                    </tr>
+                    <tr>
+                        <td>你能够不用人帮自己穿外套吗？</td>
+                        <td><label><input type="radio" name="r2" value="3"/><span>3</span></label></td>
+                        <td><label><input type="radio" name="r2" value="2"/><span>2</span></label></td>
+                        <td><label><input type="radio" name="r2" value="1"/><span>1</span></label></td>
+                        <td><label><input type="radio" name="r2" value="0"/><span>0</span></label></td>
+                        <td></td>
+
+                    </tr>
+                    <tr>
+                        <td>你能够洗背部或者系胸罩吗？</td>
+                        <td><label><input type="radio" name="r3" value="3"/><span>3</span></label></td>
+                        <td><label><input type="radio" name="r3" value="2"/><span>2</span></label></td>
+                        <td><label><input type="radio" name="r3" value="1"/><span>1</span></label></td>
+                        <td><label><input type="radio" name="r3" value="0"/><span>0</span></label></td>
+                        <td></td>
+
+                    </tr>
+                    <tr>
+                        <td>你能够用卫生纸（擦屁股）吗？</td>
+                        <td><label><input type="radio" name="r4" value="3"/><span>3</span></label></td>
+                        <td><label><input type="radio" name="r4" value="2"/><span>2</span></label></td>
+                        <td><label><input type="radio" name="r4" value="1"/><span>1</span></label></td>
+                        <td><label><input type="radio" name="r4" value="0"/><span>0</span></label></td>
+                        <td></td>
+
+                    </tr>
+                    <tr>
+                        <td>你能够梳头洗头吗？</td>
+                        <td><label><input type="radio" name="r5" value="3"/><span>3</span></label></td>
+                        <td><label><input type="radio" name="r5" value="2"/><span>2</span></label></td>
+                        <td><label><input type="radio" name="r5" value="1"/><span>1</span></label></td>
+                        <td><label><input type="radio" name="r5" value="0"/><span>0</span></label></td>
+                        <td></td>
+
+                    </tr>
+                    <tr>
+                        <td>你能够把十斤重的东西举过肩部吗？</td>
+                        <td><label><input type="radio" name="r6" value="3"/><span>3</span></label></td>
+                        <td><label><input type="radio" name="r6" value="2"/><span>2</span></label></td>
+                        <td><label><input type="radio" name="r6" value="1"/><span>1</span></label></td>
+                        <td><label><input type="radio" name="r6" value="0"/><span>0</span></label></td>
+                        <td></td>
+
+                    </tr>
+                    <tr>
+                        <td>你能够够得着超过头顶的橱柜吗？</td>
+                        <td><label><input type="radio" name="r7" value="3"/><span>3</span></label></td>
+                        <td><label><input type="radio" name="r7" value="2"/><span>2</span></label></td>
+                        <td><label><input type="radio" name="r7" value="1"/><span>1</span></label></td>
+                        <td><label><input type="radio" name="r7" value="0"/><span>0</span></label></td>
+                        <td></td>
+
+                    </tr>
+                    <tr>
+                        <td>你的肩部是否允许你做有规律的全天制工作（或者整体的日常活动）？</td>
+                        <td><label><input type="radio" name="r8" value="3"/><span>3</span></label></td>
+                        <td><label><input type="radio" name="r8" value="2"/><span>2</span></label></td>
+                        <td><label><input type="radio" name="r8" value="1"/><span>1</span></label></td>
+                        <td><label><input type="radio" name="r8" value="0"/><span>0</span></label></td>
+                        <td></td>
+
+                    </tr>
+                    <tr>
+                        <td>你的肩部是否允许你参加有规律的运动？</td>
+                        <td><label><input type="radio" name="r9" value="3"/><span>3</span></label></td>
+                        <td><label><input type="radio" name="r9" value="2"/><span>2</span></label></td>
+                        <td><label><input type="radio" name="r9" value="1"/><span>1</span></label></td>
+                        <td><label><input type="radio" name="r9" value="0"/><span>0</span></label></td>
+                        <td><label style="max-width: 60%"><input type="radio" name="r9"
+                                                                 value="0"/><span>我不参加运动</span></label></td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="6">
+                            <p style="text-align: center">在过去的一周，你的肩膀在休息时，疼痛的平均程度是多少（最严重十分疼痛，得10分）</p>
+                            <div class="so">
+                                <label><input type="radio" name="r10" value="0"/><span>0</span></label>
+                                <label><input type="radio" name="r10" value="1"/><span>1</span></label>
+                                <label><input type="radio" name="r10" value="2"/><span>2</span></label>
+                                <label><input type="radio" name="r10" value="3"/><span>3</span></label>
+                                <label><input type="radio" name="r10" value="4"/><span>4</span></label>
+                                <label><input type="radio" name="r10" value="5"/><span>5</span></label>
+                                <label><input type="radio" name="r10" value="6"/><span>6</span></label>
+                                <label><input type="radio" name="r10" value="7"/><span>7</span></label>
+                                <label><input type="radio" name="r10" value="8"/><span>8</span></label>
+                                <label><input type="radio" name="r10" value="9"/><span>9</span></label>
+                                <label><input type="radio" name="r10" value="10"/><span>10</span></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">
+                            <p style="text-align: center">在过去的一周，你的肩膀在活动时，疼痛的平均程度是多少（最严重十分疼痛，得10分）</p>
+                            <div class="so">
+                                <label><input type="radio" name="r11" value="0"/><span>0</span></label>
+                                <label><input type="radio" name="r11" value="1"/><span>1</span></label>
+                                <label><input type="radio" name="r11" value="2"/><span>2</span></label>
+                                <label><input type="radio" name="r11" value="3"/><span>3</span></label>
+                                <label><input type="radio" name="r11" value="4"/><span>4</span></label>
+                                <label><input type="radio" name="r11" value="5"/><span>5</span></label>
+                                <label><input type="radio" name="r11" value="6"/><span>6</span></label>
+                                <label><input type="radio" name="r11" value="7"/><span>7</span></label>
+                                <label><input type="radio" name="r11" value="8"/><span>8</span></label>
+                                <label><input type="radio" name="r11" value="9"/><span>9</span></label>
+                                <label><input type="radio" name="r11" value="10"/><span>10</span></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">
+                            <!--                            <p style="text-align: center">如果正常肩关节的整体功能是100分，你现在肩关节的功能有多少分（请写出具体分数）？</p>-->
+                            <!--                            <div class="so">0分&#45;&#45;无功能 100分&#45;&#45;完全正常-->
+                            <!--&lt;!&ndash;                                <input type="text"  id="sc" style="height: 40px">&ndash;&gt;-->
+                            <!--                                <input type="text" id="sc" style="height: 40px;">-->
+                            <!--                            </div>-->
+
+                            <div class="panel panel-default" style="margin-top: -20px;background: bottom;border: 0px">
+                                <div class="panel-body">
+                                    <p style="text-align: center;margin-top: 5px">
+                                        如果正常肩关节的整体功能是10分，你现在肩关节的功能有多少分（请写出具体分数）？</p>
+                                    <div class="so">0分--无功能 10分--完全正常
+                                        <input style="color: black;   height: 32px; margin-top: 7px;" type="text"
+                                               value="" id="sc" name="sco" oninput="if (value>10)value=10;if (value<0)value = 0" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+            <!--            <input type="submit" id="sub" value="提交" class="btn btn-primary">-->
+            <input type="submit" id="sub" class="button"  name="button" value="提交">
+        </div>
+    </form>
+
+</div>
+<script type="text/javascript" src="/js/login.js"></script>
+<script type="text/javascript" src="/js/form.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script type="text/javascript" src="/js/login_ajax.js"></script>
+</body>
+
+<!--<script  type="text/javascript">-->
+<!--    (function () {-->
+<!--        document.getElementById("sub").onclick = function () {-->
+<!--            var r = document.getElementById("eval").getElementsByTagName("input");-->
+<!--            var sc = document.getElementById("sc").value;-->
+<!--            var name = document.getElementById("name").value;-->
+<!--            var age = document.getElementById("age").value;-->
+<!--            var sex = document.getElementById("sex").value;-->
+<!--            var phone = document.getElementById("phone").value;-->
+<!--            var sum = 0;-->
+<!--            var len = r.length;-->
+<!--            for (var i = 0; i < len; i++) {-->
+<!--                if (r[i].checked) {-->
+<!--                    sum += parseFloat(r[i].value);-->
+<!--                }-->
+<!--            }-->
+<!--            var su = Number(sum) + Number(sc);-->
+
+<!--            var info = {"score": su, "username": name, "userAge": age, "userSex": sex, "userPhone": phone};-->
+
+
+<!--            $.ajax({-->
+<!--                type: "post",-->
+<!--                url: "/test",-->
+<!--                dataType: "json",-->
+<!--                contentType: 'application/json;charset=UTF-8',// 核心-->
+<!--                data: JSON.stringify(info),-->
+<!--                // data: {'score': su,'username':name,'userAge':age,'userSex':sex,'userPhone':phone},-->
+<!--                success: function (data) {-->
+<!--                    console.log(data);-->
+<!--                    sessionStorage.setItem("username",data.username);-->
+<!--                    sessionStorage.setItem("userAge",data.userAge);-->
+<!--                    sessionStorage.setItem("userSex",data.userSex);-->
+<!--                    sessionStorage.setItem("userPhone",data.userPhone);-->
+<!--                    sessionStorage.setItem("userScore",data.score);-->
+<!--                    location.href="/en";-->
+<!--                },-->
+<!--                error: function () {-->
+<!--                    alert("遇到了一个问题");-->
+
+<!--                    // console.log("有问题");-->
+<!--                }-->
+<!--            });-->
+
+<!--            // alert("您的最终测试结果为：" + su + "分");-->
+<!--            alert("确认要提交吗")-->
+<!--            if (confirm("请确认所有题都回答完毕？")) {-->
+<!--                alert("您的最终测试结果为：" + su + "分");-->
+<!--            } else {-->
+<!--                alert("返回答题");-->
+<!--            }-->
+<!--        }-->
+<!--    })();-->
+<!--</script>-->
+</html>

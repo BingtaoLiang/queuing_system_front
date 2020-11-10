@@ -1,0 +1,4 @@
+server:
+  provider:
+    url: http://localhost:8090
+  port: 8080

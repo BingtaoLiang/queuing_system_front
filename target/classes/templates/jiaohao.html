@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+    <title>叫号</title>
+    <meta name="viewport" http-equiv="Content-Type"
+          content="text/html; charset=UTF-8;width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <!--    <link rel="stylesheet" href="/css/zhiyuan.css">-->
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="/js/ie-emulation-modes-warning.js"></script>
+</head>
+<style>
+    th {
+        text-align: center;
+        color: white
+    }
+
+    table {
+        width: 800px;
+        margin: 0 auto;
+        font-size: 20px
+    }
+
+    td {
+        color: white
+    }
+</style>
+<body style="background-color: #f5f4f8" background="images/bg.jpg">
+<div style="height: 100px;margin-top: 20px">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  ">
+        <div class="jumbotron" style="background: none">
+            <h1 style="text-align: center;color: ghostwhite">当前病人</h1>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+    <div style="height: 650px;width: 60%;margin-left: 20%;">
+        <div style="text-align: center;margin-top: 20px">
+            <table class="table table-bordered">
+                <tr>
+                    <th>姓名:</th>
+                    <td th:text="${user == null}?' ':${user.getUsername()}"></td>
+                </tr>
+                <tr>
+                    <th>年龄:</th>
+                    <td th:text="${user == null}?' ':${user.getUserAge()}"></td>
+                </tr>
+                <tr>
+                    <th>性别:</th>
+                    <td th:text="${user == null}?' ':${user.getUserSex()}"></td>
+                </tr>
+                <tr>
+                    <th>号码:</th>
+                    <td th:text="${user ==null}?' ':${user.getXuhao()}"
+                        style="color: orangered;font-size: 35px"></td>
+                </tr>
+            </table>
+        </div>
+
+        <a href="/doctor">
+            <input value="返回" type="button" class="btn btn-primary btn-block" style="width: 130px;display: inline;font-size: 20px">
+        </a>
+        <a href="/nextUser">
+            <input th:if="${user}!=null" value="下一位" class="btn btn-primary btn-block"
+                   style="width: 130px;float:right;display: inline;font-size: 20px">
+        </a>
+
+        <h3 th:text="${user==null}? ${msg}:' '" style="color: white;text-align: center"></h3>
+    </div>
+
+</div>
+
+<script src="/js/ie10-viewport-bug-workaround.js"></script>
+</body>
+</html>
+
