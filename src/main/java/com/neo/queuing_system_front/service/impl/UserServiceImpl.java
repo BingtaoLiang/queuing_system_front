@@ -2,7 +2,7 @@ package com.neo.queuing_system_front.service.impl;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.neo.queuing_system_front.vo.Result;
+import com.neo.queuing_system_front.vo.ResultVo;
 import com.neo.queuing_system_front.model.User;
 import com.neo.queuing_system_front.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
             return "register";
         } else {
             Integer score = r + r1 + r2 + r3 + r4 + r5 + r6 + r7 + r8 + r9 + r10 + r11 + sco;
-            Result mapResult = restTemplate.getForObject(url + "/guahao?username=" + username + "&userAge=" + userAge + "&userSex=" + userSex + "&userPhone=" + userPhone + "&score=" + score, Result.class);
+            ResultVo mapResult = restTemplate.getForObject(url + "/guahao?username=" + username + "&userAge=" + userAge + "&userSex=" + userSex + "&userPhone=" + userPhone + "&score=" + score, ResultVo.class);
             if (mapResult.getCode() != 200) {
                 //未成功挂号，今天已挂过
                 Object msg = mapResult.getMsg();
@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
     //查号
     @Override
     public String select(String username, String userPhone, Model model) {
-        Result mapResult = restTemplate.getForObject(url + "/selectUser?username=" + username + "&userPhone=" + userPhone, Result.class);
+        ResultVo mapResult = restTemplate.getForObject(url + "/selectUser?username=" + username + "&userPhone=" + userPhone, ResultVo.class);
         if (mapResult.getCode() != 200) { //说明有误(还未挂号或手机号与姓名不匹配)
             Object msg = mapResult.getMsg();
             model.addAttribute("msg", msg);

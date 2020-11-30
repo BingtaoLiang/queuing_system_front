@@ -9,7 +9,7 @@ import java.io.Serializable;
  * Date 2020/9/15 14:45
  */
 @Data
-public class Result<T> implements Serializable {
+public class ResultVo<T> implements Serializable {
 
     /*返回提示码*/
     private Integer code;

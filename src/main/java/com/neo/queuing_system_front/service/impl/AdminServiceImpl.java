@@ -1,7 +1,7 @@
 package com.neo.queuing_system_front.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.neo.queuing_system_front.vo.Result;
+import com.neo.queuing_system_front.vo.ResultVo;
 import com.neo.queuing_system_front.model.User;
 import com.neo.queuing_system_front.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public String calledNumber(Model model) {
         List<User> calledList = new ArrayList<>();
-        Result calledUsersMap = restTemplate.getForObject(url + "/calledNumber", Result.class);
+        ResultVo calledUsersMap = restTemplate.getForObject(url + "/calledNumber", ResultVo.class);
         Map<String,Object> data = (Map<String, Object>) calledUsersMap.getData();
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -47,7 +47,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public String restart(Model model) {
-        Result mapResult = restTemplate.getForObject(url + "/restart", Result.class);
+        ResultVo mapResult = restTemplate.getForObject(url + "/restart", ResultVo.class);
         Map<String,Object> resultData = (Map<String, Object>) mapResult.getData();
         model.addAttribute("msg",  resultData.get("msg"));
         return "guanli";

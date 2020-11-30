@@ -1,7 +1,7 @@
 package com.neo.queuing_system_front.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.neo.queuing_system_front.vo.Result;
+import com.neo.queuing_system_front.vo.ResultVo;
 import com.neo.queuing_system_front.model.User;
 import com.neo.queuing_system_front.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public String list(Model model) {
         //已挂号病人列表需要展示出已叫号病人和未叫号病人列表
-        Result mapResult = restTemplate.getForObject(url + "/list", Result.class);
+        ResultVo mapResult = restTemplate.getForObject(url + "/list", ResultVo.class);
         List<User> userList2 = new ArrayList<>();     //用来存放未叫号病人
         List<User> calledUserList2 = new ArrayList<>();   //存放已叫号病人
 
@@ -59,7 +59,7 @@ public class DoctorServiceImpl implements DoctorService {
     //叫号
     @Override
     public String jiaohao(Model model) {
-        Result mapResult = restTemplate.getForObject(url + "/jiaohao", Result.class);
+        ResultVo mapResult = restTemplate.getForObject(url + "/jiaohao", ResultVo.class);
         if (mapResult.getCode() != 200) {    //未叫号病人列表为空
             Object msg = mapResult.getMsg();
             model.addAttribute("msg", msg);
@@ -77,7 +77,7 @@ public class DoctorServiceImpl implements DoctorService {
     //下一位
     @Override
     public String nextUser(Map<String, Object> map) {
-        Result userMap = restTemplate.getForObject(url + "/nextUser", Result.class);
+        ResultVo userMap = restTemplate.getForObject(url + "/nextUser", ResultVo.class);
         List data = (List) userMap.getData();
         if (data.size() != 0) {
             return "redirect:/jiaohao";
